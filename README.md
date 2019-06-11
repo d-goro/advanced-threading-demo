@@ -8,10 +8,15 @@ Full fences
 --
 The simplest kind of memory barrier is a **full memory barrier** (full fence) which prevents any kind of instruction reordering or caching around that fence. Calling Thread.MemoryBarrier generates a full fence; we can fix our example by applying four full fences (before and after every instruction that reads or writes a shared field *_complete*).
 Monitor.Enter and Monitor.Exit both generate full fences. 
+
 So if we ignore a lock’s mutual exclusion guarantee, we could say that this:
+
 *lock (someField) { ... }*
+
 is equivalent to this:
+
 *Thread.MemoryBarrier(); { ... } Thread.MemoryBarrier();*
+
 
 The volatile keyword
 --
