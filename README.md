@@ -6,8 +6,12 @@ Following short program showing importance of shared variable protection on any 
 
 Full fences
 --
-The simplest kind of memory barrier is a **full memory barrier** (full fence) which prevents any kind of instruction reordering or caching around that fence. Calling Thread.MemoryBarrier generates a full fence; we can fix our example by applying four full fences (before and after every instruction that reads or writes a shared field *_complete *)
-
+The simplest kind of memory barrier is a **full memory barrier** (full fence) which prevents any kind of instruction reordering or caching around that fence. Calling Thread.MemoryBarrier generates a full fence; we can fix our example by applying four full fences (before and after every instruction that reads or writes a shared field *_complete*).
+Monitor.Enter and Monitor.Exit both generate full fences. 
+So if we ignore a lock’s mutual exclusion guarantee, we could say that this:
+*lock (someField) { ... }*
+is equivalent to this:
+*Thread.MemoryBarrier(); { ... } Thread.MemoryBarrier();*
 
 The volatile keyword
 --
@@ -22,4 +26,10 @@ The effect of applying volatile to fields can be summarized as follows:
 |Read	              |         Write	      |         No           |
 |Write	            |         Write	      |         No (The CLR ensures that write-write operations are never swapped, even without the volatile keyword)|
 |Write              |        	Read        |       	**Yes!**     |
+
+
+VolatileRead and VolatileWrite
+--
+The **volatile** keyword is not supported with pass-by-reference arguments or captured local variables: in these cases you must use the VolatileRead and VolatileWrite methods. The static VolatileRead and VolatileWrite methods in the Main class read/write a variable while enforcing the guarantees made by the volatile keyword. 
+
 
