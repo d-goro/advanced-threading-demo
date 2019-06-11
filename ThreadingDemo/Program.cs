@@ -30,5 +30,15 @@ namespace ThreadingDemo
             
             t.Join();        // Blocks indefinitely
         }
+        
+        static void VolatileWrite (ref int address, int value)
+        {
+            Thread.MemoryBarrier(); address = value;
+        }
+ 
+        static int VolatileRead (ref int address)
+        {
+            int num = address; Thread.MemoryBarrier(); return num;
+        }
     }
 }
