@@ -1,1 +1,15 @@
 /NonblockingSync/obj/Debug/*.cache
+/SignalingWaitPulse/bin
+/SignalingWaitPulse/obj
+/.vs/AdvancedThreadingDemo/v16/*.suo
+/.vs/AdvancedThreadingDemo/v16/Server/sqlite3/*.lock
+/.vs/AdvancedThreadingDemo/v16/Server/sqlite3/*.ide
+/.vs/AdvancedThreadingDemo/v16/Server/sqlite3/*.ide-shm
+/.vs/AdvancedThreadingDemo/v16/Server/sqlite3/*.ide-wal
+/*.user
+/NonblockingSync/bin/Release/*.exe
+/NonblockingSync/bin/Release/*.pdb
+/NonblockingSync/obj/Release/*.cache
+/NonblockingSync/obj/Release/*.txt
+/NonblockingSync/obj/Release/*.exe
+/NonblockingSync/obj/Release/*.pdb
